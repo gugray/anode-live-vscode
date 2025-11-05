@@ -120,7 +120,7 @@ void runRelay(8081);
 
 ## Listening in a sketch
 
-This is how you can listen to changes in your live sketch.
+This is a minimal example of how you can listen to changes in your live sketch.
 
 ### receiver.js
 
@@ -172,12 +172,15 @@ export function initReceiver(onCommand) {
 ### sketch.js
 
 ```javascript
+let backgroundColor = "red";
+
 initReceiver(runCommand);
 
 frame();
 
 function frame(msec) {
   // Paint current frame on screen
+  // E.g., paint the background :)
   // ...
   
   // Request next callback
@@ -186,7 +189,7 @@ function frame(msec) {
 
 const commandContext = {
   setBackgroundColor: function(value) {
-    // Set background color for use in frame()
+    backgroundColor = value;
   },
 };
 
@@ -195,6 +198,21 @@ function runCommand(cmd) {
   evalCommand(commandContext);
 }
 ```
+
+Now you can have a file like this in VSCode. When your cursor is in the middle section and you press Ctrl+Enter, it gets sent to the running sketch, which will update its background color.
+
+```javascript
+// Code for some other time
+// ...
+
+// Code to execute now!
+setBackgroundColor("blue");
+
+// Code for some other time
+// ...
+```
+
+You can also include complex objects in the context of the evaluated command, and you can also update whole functions, e.g., to calculate the next state of a simulation. There are amazing possibilities to update the state of a running sketch without causing any discontinuity.
 
 ## Building
 
