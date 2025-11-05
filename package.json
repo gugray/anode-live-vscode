@@ -1,0 +1,88 @@
+{
+  "name": "anode-live-vscode",
+  "displayName": "Anode livecoding plugin for VSCode",
+  "description": "Relays JS file changes to websocker server",
+  "version": "0.0.1",
+  "publisher": "gugray",
+  "icon": "extension/bulb128.png",
+  "repository": "https://github.com/gugray/anode-live-vscode",
+  "license": "WTFPL",
+  "type": "module",
+  "engines": {
+    "vscode": "^1.95.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onLanguage:javascript"
+  ],
+  "main": "extension/main.cjs",
+  "files": [
+    "LICENSE",
+    "package.json",
+    "extension/**"
+  ],
+
+  "contributes": {
+    "commands": [
+      {
+        "command": "anode.evalMulti",
+        "title": "Anode Multiline Eval"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "anode.evalMulti",
+        "key": "Ctrl+Enter",
+        "mac": "Cmd+Enter",
+        "when": "resourceExtname == '.js'"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "Anode Configuration",
+      "properties": {
+        "anode.relayUrl": {
+          "type": "string",
+          "default": "",
+          "description": "URL of websocket server to relay code sections"
+        },
+        "anode.feedbackColor": {
+          "type": "string",
+          "default": "rgba(100,250,100,0.3)",
+          "description": "Hhighlight color to use when evaluating code."
+        }
+      }
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "anode",
+          "title": "Anode",
+          "icon": "images/tidal.svg"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "build": "node build.js",
+    "lint": "eslint 'src/**/*.ts'"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.12",
+    "eslint": "^9.39.0",
+    "prettier": "^3.6.2",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.46.3",
+    "@types/vscode": "^1.95.0",
+    "@types/node": "^24.10.0",
+    "@vscode/vsce": "^3.6.2"
+  },
+  "dependencies": {
+  },
+  "vsce": {
+    "dependencies": true,
+    "yarn": false
+  }
+}
