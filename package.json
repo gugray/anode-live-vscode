@@ -2,7 +2,7 @@
   "name": "anode-live-vscode",
   "displayName": "Anode livecoding plugin for VSCode",
   "description": "Relays JS file changes to websocker server",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "publisher": "gugray",
   "icon": "extension/bulb128.png",
   "repository": "https://github.com/gugray/anode-live-vscode",
@@ -47,6 +47,11 @@
           "type": "string",
           "default": "",
           "description": "URL of websocket server to relay code sections"
+        },
+        "anode.relaySecret": {
+          "type": "string",
+          "default": "",
+          "description": "Secret to authenticate with relay server"
         },
         "anode.feedbackColor": {
           "type": "string",

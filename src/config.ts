@@ -10,3 +10,7 @@ export const feedbackColor = () => {
 export const relayUrl = (): string | null => {
   return getConfiguration(configSection).get("relayUrl", null);
 };
+
+export const relaySecret = (): string | null => {
+  return getConfiguration(configSection).get("relaySecret", null);
+};

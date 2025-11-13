@@ -1,11 +1,12 @@
-import {relayUrl} from "./config";
+import {relayUrl, relaySecret} from "./config";
 import {info, error} from "./logger";
 
 export const send = (command: string) => {
   info("Sending command to relay");
 
   const url = relayUrl();
-  const data = {command};
+  const secret = relaySecret();
+  const data = {command, secret, source: "js"};
 
   if (url && url.startsWith("http")) {
     fetch(url, {
